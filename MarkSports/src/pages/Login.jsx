@@ -1,25 +1,29 @@
 import {FcGoogle} from 'react-icons/fc'
 import {FaApple, FaFacebookF, FaInstagram} from 'react-icons/fa'
 import {MdEmail, MdLock} from 'react-icons/md'
+import {GoArrowLeft} from 'react-icons/go'
+import { useNavigate } from 'react-router-dom'
+import Logo from '../components/common/Logo'
+import imagePanel from '../components/common/ImagePanel'
+import imputField from '../components/common/ImputField'
 
 
 const Login = () => {
+    const navigate = useNavigate()
+
   return (
     <div className="flex h-screen">
 
       {/* Lado esquerdo */}
       <div className="w-1/2 flex flex-col px-16 py-10 bg-white overflow-y-auto">
-        
-        <a href="/" className="text-sm text-gray-600 hover:text-orange-600 mb-8">
-          ← Voltar para home
-        </a>
+           <span
+                 onClick={() => navigate('/')}
+                 className="flex items-center gap-1 text-sm text-gray-600 hover:text-orange-600 mb-8 cursor-pointer"
+             >
+                <GoArrowLeft /> Voltar para home
+             </span>
 
-        <div className="flex items-center gap-3 mb-8">
-          <div className="bg-orange-600 text-white w-9 h-9 rounded-lg flex items-center justify-center font-bold text-lg">
-            M
-          </div>
-          <span className="text-orange-600 font-bold text-2xl">MarkSPORTS</span>
-        </div>
+        <Logo />
 
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Bem-vindo de volta!</h1>
         <p className="text-sm text-gray-500 mb-6">Entre na sua conta para continuar comprando</p>
@@ -51,25 +55,9 @@ const Login = () => {
 
         {/* Formulário */}
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-gray-700">E-mail</label>
-          <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-3 mb-2">
-            <MdEmail className="text-gray-400" />
-            <input
-              type="email"
-              placeholder="seu@email.com"
-              className="bg-transparent outline-none text-sm w-full text-gray-700"
-            />
-          </div>
 
-          <label className="text-sm font-medium text-gray-700">Senha</label>
-          <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-3 mb-2">
-            <MdLock className="text-gray-400" />
-            <input
-              type="password"
-              placeholder="........"
-              className="bg-transparent outline-none text-sm w-full text-gray-700"
-            />
-          </div>
+            <imputField label="E-mail" icon={MdEmail} type="email" placeholder="seu@email.com" />
+            <imputField label="Senha" icon={MdLock} type="password" placeholder="........" />   
 
           <div className="flex justify-between items-center my-1">
             <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
@@ -81,6 +69,14 @@ const Login = () => {
           <button className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition mt-2 cursor-pointer">
             Entrar
           </button>
+         <p className= "text-sm text-center text-gray-500 mt-3">
+            Não tem uma conta? {' '}
+            <span 
+            onClick={() => navigate('/cadastro')}
+            className="text-orange-600 font-medium hover:underline cursor-pointer">
+                Cadastre-se gratuitamente
+            </span>
+         </p>
         </div>
       </div>
 
