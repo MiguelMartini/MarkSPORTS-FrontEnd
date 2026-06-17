@@ -73,7 +73,7 @@ const Cadastro = () => {
             </label>
           </div>
 
-          <button className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition cursor-pointer mt-2">
+          <button onClick={() => navigate('/')} className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition cursor-pointer mt-2">
             Criar conta
           </button>
 

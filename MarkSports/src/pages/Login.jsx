@@ -57,8 +57,8 @@ const Login = () => {
         {/* Formulário */}
         <div className="flex flex-col gap-2">
 
-            <imputField label="E-mail" icon={MdEmail} type="email" placeholder="seu@email.com" />
-            <imputField label="Senha" icon={MdLock} type="password" placeholder="........" />   
+            <ImputField label="E-mail" icon={MdEmail} type="email" placeholder="seu@email.com" />
+            <ImputField label="Senha" icon={MdLock} type="password" placeholder="........" />   
 
           <div className="flex justify-between items-center my-1">
             <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
@@ -67,7 +67,10 @@ const Login = () => {
             <a href="#" className="text-sm text-orange-600 hover:underline">Esqueceu a senha?</a>
           </div>
 
-          <button className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition mt-2 cursor-pointer">
+          <button className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition mt-2 cursor-pointer"
+            onClick={() => navigate('/')}
+          >
+           
             Entrar
           </button>
          <p className= "text-sm text-center text-gray-500 mt-3">
