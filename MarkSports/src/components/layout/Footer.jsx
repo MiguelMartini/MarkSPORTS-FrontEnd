@@ -5,9 +5,9 @@ const Footer = () => {
 const navigate = useNavigate()
     return (
 
-    <footer className="bg-gray-900 text-gray-400 px-16 py-12">
+    <footer className="bg-gray-900 text-gray-400 px-6 md:px-16 py-12">
 
-      <div className="flex justify-between mb-10">
+     <div className="flex flex-col md:flex-row md:justify-between gap-8 mb-10">
 
         {/* Logo e descrição */}
         <div className="max-w-xs">

@@ -55,7 +55,7 @@ const Home = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative h-[500px] flex items-center">
+     <section className="relative h-[400px] md:h-[500px] flex items-center">
         <img
           src="https://img.freepik.com/fotos-premium/mulher-atleta-correndo-em-seus-tenis-nas-ruas-de-paris-com-a-torre-eiffel-na-frente-dela_1200-1470.jpg?w=2000"
           alt="Atleta"
@@ -63,17 +63,17 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-black/40"></div>
 
-        <div className="relative z-10 px-16 max-w-2xl">
+        <div className="relative z-10 px-6 md:px-16 max-w-2xl">
           <span className="bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
             Marketplace Oficial para Atletas
           </span>
-          <h1 className="text-5xl font-bold text-white mt-4 mb-4 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-4 leading-tight">
             Seu esporte, seus acessórios
           </h1>
           <p className="text-white text-lg mb-6 opacity-90">
             Compre e venda equipamentos esportivos com segurança. Milhares de produtos, vendedores verificados e as melhores ofertas do mercado.
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={() => navigate('/produtos')}
               className="bg-gradient-to-r from-orange-600 to-red-700 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer hover:opacity-90 transition"
@@ -88,8 +88,8 @@ const Home = () => {
       </section>
 
       {/* Produtos em Alta */}
-      <section className="px-16 py-16">
-        <div className="flex justify-between items-end mb-8">
+      <section className="px-6 md:px-16 py-16">
+       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8">
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-1">Produtos em Alta</h2>
             <p className="text-gray-500">Os mais vendidos da semana com descontos especiais</p>
@@ -99,7 +99,7 @@ const Home = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {produtosEmAlta.map((produto) => (
             <div key={produto.id} className="cursor-pointer group">
               <div className="relative rounded-lg overflow-hidden mb-3">
@@ -134,12 +134,12 @@ const Home = () => {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-orange-600 to-red-700 text-white text-center py-16 px-8">
+     <section className="bg-gradient-to-r from-orange-600 to-red-700 text-white text-center py-16 px-6">
         <h2 className="text-4xl font-bold mb-3">Pronto para começar?</h2>
         <p className="text-lg opacity-90 mb-8">
           Crie sua conta gratuitamente e tenha acesso a milhares de produtos esportivos
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => navigate('/cadastro')}
             className="bg-white text-orange-600 px-6 py-3 rounded-lg font-semibold cursor-pointer hover:opacity-90 transition"

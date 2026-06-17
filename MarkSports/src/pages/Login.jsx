@@ -15,7 +15,7 @@ const Login = () => {
     <div className="flex h-screen">
 
       {/* Lado esquerdo */}
-      <div className="w-1/2 flex flex-col px-16 py-10 bg-white overflow-y-auto">
+      <div className="w-full md:w-1/2 flex flex-col px-6 md:px-16 py-10 bg-white overflow-y-auto">
            <span
                  onClick={() => navigate('/')}
                  className="flex items-center gap-1 text-sm text-gray-600 hover:text-orange-600 mb-8 cursor-pointer"

@@ -1,6 +1,6 @@
 const ImagePanel = ({ image }) => {
   return (
-    <div className="w-1/2 relative">
+    <div className="hidden md:block md:w-1/2 relative">
       <img
         src={image}
         alt="Atleta correndo"
