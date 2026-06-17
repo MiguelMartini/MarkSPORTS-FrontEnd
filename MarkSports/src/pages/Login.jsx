@@ -4,8 +4,8 @@ import {MdEmail, MdLock} from 'react-icons/md'
 import {GoArrowLeft} from 'react-icons/go'
 import { useNavigate } from 'react-router-dom'
 import Logo from '../components/common/Logo'
-import imagePanel from '../components/common/ImagePanel'
-import imputField from '../components/common/ImputField'
+import ImagePanel from '../components/common/ImagePanel'
+import ImputField from '../components/common/ImputField'
 
 
 const Login = () => {
@@ -22,8 +22,9 @@ const Login = () => {
              >
                 <GoArrowLeft /> Voltar para home
              </span>
-
+        <div className="mb-8">
         <Logo />
+        </div>
 
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Bem-vindo de volta!</h1>
         <p className="text-sm text-gray-500 mb-6">Entre na sua conta para continuar comprando</p>
@@ -81,13 +82,7 @@ const Login = () => {
       </div>
 
       {/* Lado direito */}
-      <div className="w-1/2 relative">
-      <img src="https://img.freepik.com/fotos-premium/tiro-lateral-fotografico-de-um-atleta-correndo_826849-2261.jpg"
-       alt="Atleta correndo" 
-       className="w-full h-full object-cover opacity-30" />
-       <div className="absolute inset-0 bg-orange-600 opacity-60"></div>
-      </div>
-      
+      <ImagePanel image="https://img.freepik.com/fotos-premium/tiro-lateral-fotografico-de-um-atleta-correndo_826849-2261.jpg" />
 
     </div>
   )

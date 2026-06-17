@@ -1,8 +1,8 @@
-const ImagePanel = () => {
+const ImagePanel = ({ image }) => {
   return (
     <div className="w-1/2 relative">
       <img
-        src="https://img.freepik.com/fotos-premium/tiro-lateral-fotografico-de-um-atleta-correndo_826849-2261.jpg"
+        src={image}
         alt="Atleta correndo"
         className="w-full h-full object-cover"
       />
