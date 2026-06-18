@@ -13,17 +13,18 @@ const Cadastro = () => {
   return (
     <div className="flex h-screen">
 
-      <ImagePanel />
+      <ImagePanel image="https://static1.purepeople.com.br/articles/4/39/46/34/@/4507681-rafaela-silva-e-atleta-de-judo-580x0-1.jpg"/>
 
-      <div className="w-1/2 flex flex-col px-16 py-10 bg-white overflow-y-auto">
+      <div className="w-full md:w-1/2 flex flex-col px-6 md:px-16 py-10 bg-white overflow-y-auto">
       <span
             onClick={() => navigate('/')}
             className="flex items-center gap-1 text-sm text-gray-600 hover:text-orange-600 mb-8 cursor-pointer"
         >
            <GoArrowLeft /> Voltar para home
         </span>
-
+        <div className="mb-8">
         <Logo />
+        </div>
 
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Criar conta</h1>
         <p className="text-sm text-gray-500 mb-6">Comece sua jornada esportiva conosco</p>
@@ -72,7 +73,7 @@ const Cadastro = () => {
             </label>
           </div>
 
-          <button className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition cursor-pointer mt-2">
+          <button onClick={() => navigate('/')} className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition cursor-pointer mt-2">
             Criar conta
           </button>
 
