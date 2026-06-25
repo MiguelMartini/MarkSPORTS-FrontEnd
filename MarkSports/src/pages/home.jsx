@@ -1,54 +1,26 @@
 import { useNavigate } from "react-router-dom";
-import { MdStar } from "react-icons/md";
-import { FaRegHeart } from "react-icons/fa";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-
-const produtosEmAlta = [
-  {
-    id: 1,
-    nome: 'Tênis Running Pro Elite',
-    imagem: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',
-    rating: 4.8,
-    avaliacoes: 234,
-    precoAtual: 599.90,
-    precoAntigo: 799.90,
-    desconto: 25,
-  },
-  {
-    id: 2,
-    nome: 'Kit Raquete Tênis Profissional',
-    imagem: 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=400',
-    rating: 4.9,
-    avaliacoes: 189,
-    precoAtual: 899.90,
-    precoAntigo: 1199.90,
-    desconto: 25,
-  },
-  {
-    id: 3,
-    nome: 'Equipamento Fitness Completo',
-    imagem: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400',
-    rating: 4.7,
-    avaliacoes: 156,
-    precoAtual: 1299.90,
-    precoAntigo: 1699.90,
-    desconto: 24,
-  },
-  {
-    id: 4,
-    nome: 'Sneakers Premium Collection',
-    imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400',
-    rating: 4.9,
-    avaliacoes: 312,
-    precoAtual: 749.90,
-    precoAntigo: 999.90,
-    desconto: 25,
-  },
-]
+import { useState, useEffect } from 'react'
+import { getProducts } from '../services/products'
+import ProductCard from '../components/common/ProductCard'
 
 const Home = () => {
   const navigate = useNavigate()
+  const [produtos, setProdutos] = useState([])
+
+  useEffect(() => {
+    const fetchProdutos = async () => {
+      try {
+        const data = await getProducts()
+        setProdutos((data.data || []).slice(0, 4))
+      } catch (error) {
+        console.error('Erro ao carregar produtos', error)
+      }
+    }
+
+    fetchProdutos()
+  }, [])
 
   return (
     <div>
@@ -94,43 +66,17 @@ const Home = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-1">Produtos em Alta</h2>
             <p className="text-gray-500">Os mais vendidos da semana com descontos especiais</p>
           </div>
-          <button className="border border-gray-300 px-5 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-gray-50 transition">
+          <button onClick={() => navigate('/produtos')}
+          className="border border-gray-300 px-5 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-gray-50 transition">
             Ver Todos
           </button>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {produtosEmAlta.map((produto) => (
-            <div key={produto.id} className="cursor-pointer group">
-              <div className="relative rounded-lg overflow-hidden mb-3">
-                <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                  -{produto.desconto}%
-                </span>
-                <FaRegHeart className="absolute top-3 right-3 bg-white rounded-full p-2 w-8 h-8 text-gray-700 z-10" />
-                <img
-                  src={produto.imagem}
-                  alt={produto.nome}
-                  className="w-full h-56 object-cover group-hover:scale-105 transition duration-300"
-                />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-1">{produto.nome}</h3>
-              <div className="flex items-center gap-1 text-sm mb-1">
-                <MdStar className="text-yellow-500" />
-                <span className="font-medium">{produto.rating}</span>
-                <span className="text-gray-400">({produto.avaliacoes})</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-gray-900">
-                  R$ {produto.precoAtual.toFixed(2).replace('.', ',')}
-                </span>
-                <span className="text-sm text-gray-400 line-through">
-                  R$ {produto.precoAntigo.toFixed(2).replace('.', ',')}
-                </span>
-              </div>
-              <p className="text-xs text-green-600 mt-1">Em até 12x sem juros</p>
-            </div>
-          ))}
-        </div>
+  {produtos.map((produto) => (
+    <ProductCard key={produto.id} product={produto} />
+  ))}
+</div>
       </section>
 
       {/* CTA */}
