@@ -52,9 +52,12 @@ const Home = () => {
             >
               Explorar Produtos
             </button>
-            <button className="bg-gray-800/70 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer hover:bg-gray-800 transition">
-              Vender Agora
-            </button>
+            <button
+            onClick={() => navigate('/vender')}
+            className="bg-gray-800/70 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer hover:bg-gray-800 transition"
+            >
+            Vender Agora
+          </button>
           </div>
         </div>
       </section>
