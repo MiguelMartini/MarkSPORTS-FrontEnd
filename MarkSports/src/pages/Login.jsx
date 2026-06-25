@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {FcGoogle} from 'react-icons/fc'
 import {FaApple, FaFacebookF, FaInstagram} from 'react-icons/fa'
 import {MdEmail, MdLock} from 'react-icons/md'
@@ -6,10 +7,30 @@ import { useNavigate } from 'react-router-dom'
 import Logo from '../components/common/Logo'
 import ImagePanel from '../components/common/ImagePanel'
 import ImputField from '../components/common/ImputField'
-
+import { loginUser } from '../services/auth'
 
 const Login = () => {
     const navigate = useNavigate()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [erro, setErro] = useState('')
+    const [carregando, setCarregando] = useState(false)
+
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        setCarregando(true)
+        setErro('')
+
+        try {
+          const data = await loginUser({ email, password })
+          localStorage.setItem('token', data.token)
+          navigate('/')
+        } catch (error) {
+          setErro('E-mail ou senha inválidos')
+        } finally {
+          setCarregando(false)
+        }
+      }
 
   return (
     <div className="flex h-screen">
@@ -55,36 +76,64 @@ const Login = () => {
         </div>
 
         {/* Formulário */}
-        <div className="flex flex-col gap-2">
 
-            <ImputField label="E-mail" icon={MdEmail} type="email" placeholder="seu@email.com" />
-            <ImputField label="Senha" icon={MdLock} type="password" placeholder="........" />   
+              <form onSubmit={handleLogin} className="flex flex-col gap-2">
+
+          <label className="text-sm font-medium text-gray-700">E-mail</label>
+          <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-3 mb-2">
+            <MdEmail size={18} className="text-gray-400" />
+            <input
+              type="email"
+              placeholder="seu@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="bg-transparent outline-none text-sm w-full text-gray-700"
+            />
+          </div>
+
+          <label className="text-sm font-medium text-gray-700">Senha</label>
+          <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-3 mb-2">
+            <MdLock size={18} className="text-gray-400" />
+            <input
+              type="password"
+              placeholder="........"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="bg-transparent outline-none text-sm w-full text-gray-700"
+            />
+          </div>
+
+          {erro && <p className="text-sm text-red-600">{erro}</p>}
 
           <div className="flex justify-between items-center my-1">
             <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-              <input type="checkbox"/> Lembrar de mim
+              <input type="checkbox" /> Lembrar de mim
             </label>
             <a href="#" className="text-sm text-orange-600 hover:underline">Esqueceu a senha?</a>
           </div>
 
-          <button className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition mt-2 cursor-pointer"
-            onClick={() => navigate('/')}
+          <button
+            type="submit"
+            disabled={carregando}
+            className="w-full py-4 bg-gradient-to-r from-orange-600 to-red-700 text-white rounded-lg font-semibold text-base hover:opacity-90 transition mt-2 cursor-pointer disabled:opacity-60"
           >
-           
-            Entrar
+            {carregando ? 'Entrando...' : 'Entrar'}
           </button>
-         <p className= "text-sm text-center text-gray-500 mt-3">
-            Não tem uma conta? {' '}
-            <span 
-            onClick={() => navigate('/cadastro')}
-            className="text-orange-600 font-medium hover:underline cursor-pointer">
-                Cadastre-se gratuitamente
+
+          <p className="text-sm text-center text-gray-500 mt-3">
+            Não tem uma conta?{' '}
+            <span
+              onClick={() => navigate('/cadastro')}
+              className="text-orange-600 font-medium hover:underline cursor-pointer"
+            >
+              Cadastre-se gratuitamente
             </span>
-         </p>
-        </div>
+          </p>
+        </form>
       </div>
 
-      {/* Lado direito */}
       <ImagePanel image="https://img.freepik.com/fotos-premium/tiro-lateral-fotografico-de-um-atleta-correndo_826849-2261.jpg" />
 
     </div>
